@@ -1,0 +1,107 @@
+  CART = {
+    content: [],
+    async sync() {
+      let _cart = JSON.stringify(this.CART.content);
+      await this.setState({ cart: _cart })
+    },
+    find(id) {
+      let match = this.CART.content.filter(item => {
+        if (item._id === id)
+          return true;
+      });
+      if (match && match[0])
+        return match[0];
+    },
+    add(id) {
+      if (this.CART.find(id)) {
+        this.CART.increase(id, 1);
+      } else {
+        let arr = this.state.details.filter(e => {
+          if (e._id === id) {
+            return true
+          }
+        });
+        if (arr && arr[0]) {
+          let itemObj = {
+            id: arr[0]._id,
+            name: arr[0].name,
+            qty: this.state.quantity,
+            price: arr[0].price,
+            itemTotal: function () {
+              return this.price * this.qty
+            }
+          };
+          this.CART.content.push(itemObj)
+          this.CART.sync()
+        } else {
+          console.log("invalid product")
+        }
+      }
+    },
+    increase(id, qty) {
+      this.CART.content = this.CART.content.map(e => {
+        if (e.id === id)
+          e.qty = e.qty + qty;
+        return e;
+      });
+      this.CART.sync()
+    },
+    reduce(id, qty) {
+      this.CART.content = this.CART.content.map(e => {
+        if (e.id === id)
+          e.qty = e.qty - qty;
+        return e;
+      });
+      this.CART.content.forEach(async e => {
+        if (e.id === id && e.qty === 0)
+          await this.CART.remove(id)
+      });
+      this.CART.sync()
+    },
+    remove(id) {
+      this.CART.content = this.CART.content.filter(e => {
+        if (e.id !== id)
+          return true;
+      });
+      this.CART.sync()
+    },
+    empty() {
+      this.CART.content = [];
+      this.CART.sync()
+    },
+    updateQty(id, qty) {
+      this.CART.content = this.CART.content.map(e => {
+        if (e.id === id)
+          e.qty = qty;
+        return e;
+      });
+      this.CART.sync()
+    }
+  }
+
+  addItem(e) {
+    e.preventDefault();
+    let id = e.target.getAttribute('data-id');
+    console.log('add to cart item', id);
+    let qty = this.state.quantity;
+    this.CART.add(id, qty);
+  }
+  decrementItem(e) {
+    e.preventDefault();
+    let id = parseInt(e.target.getAttribute('data-id'));
+    let qty = this.state.quantity
+    this.CART.reduce(id, qty);
+  }
+  incrementItem(e) {
+    e.preventDefault();
+    let id = parseInt(e.target.getAttribute('data-id'));
+    let qty = this.state.quantity
+    this.CART.increase(id, qty);
+  }
+  qtyUpdate(e) {
+    e.preventDefault();
+    let id = parseInt(e.target.getAttribute('data-id'))
+    this.setState({ quantity: e.target.value })
+    let qty = this.state.quantity;
+    this.CART.updateQty(id, qty);
+  }

@@ -1,0 +1,278 @@
+  
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||  CART           ||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+  
+  //let id = _id
+  //console.log(id)
+  //  let product = this.state.details.find(e => e._id === id);
+  //  console.log(product)
+  //  this.setState({cart : product, })]
+
+ // console.log("clicked")
+  // var dummy= {  name : "Josh", age : 50, money : 20000 }
+  // let cart = this.state.cart;
+  // cart.push(dummy);
+
+     //let id = _id
+       // this.setState({
+  //   cart: cart.filter((e, i) => {
+  //     return i !== id
+  //   }),
+  // });
+   // console.log(cart)
+  // this.setState({cart :cart })
+
+
+    // let cart = this.state.cart;
+    // cart.splice(1, id)
+  // this.setState({
+  //   cart: cart,
+  // });
+  // console.log(cart)
+
+
+ // console.log(item)
+
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||||||||||||||||||||||||||||||| SOME FUNC          ||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+   let result = this.state.products.filter(function (a) {
+    return a.category === 'viral';
+});
+console.log(result);
+
+  const toFind = "viral";
+  const filtered = this.state.products.filter(function(el) {
+  return el.id === this.toFind;
+});
+console.log(filtered);
+
+
+  for(let i=0; i < products.length; i++){
+     if(products[i].category === "viral"){
+        viral.push(products[i]["category"]["viral"])
+     }
+    }
+
+    for(let i=0; i < products.length; i++){
+      if(products[i]["category"] === "viral"){
+         viral.push(products[i]["category"]["viral"])
+      }
+     }
+
+
+       // addNewUser = () => {
+  //     this.setState(state => {
+  //       users: state.users.concat(user)
+  //     })
+  // }
+
+  
+  // async createAccount(e) {
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(user)
+  //   }
+  //   const response = await fetch('http://206.189.124.254:9000/register', requestOptions);
+  //   const data = await response.json();
+  //   console.log(data);
+  //   this.setState({ postId: data.id });
+  // }
+
+  handleSubmit() {
+  }
+    addToCart(e) {
+     let id = e.target.getAttribute("data-attr") 
+
+     fetch(`http://206.189.124.254:9000/product/${id}`, {
+      "method": "GET",
+  })
+      .then(response => response.json())
+      .then(response => {
+          console.log(response);
+          this.setState({cart: [...this.state.cart, response]});
+      })
+      .catch(err => {
+          console.log(err);
+      });
+    }
+
+
+  LoggedIn = false;
+  email = document.querySelector('#email').Value;
+  password = document.querySelector('#password').Value;
+  errMsg = '';
+  validate() {
+    if (this.email === '' && this.password === '') {
+      this.errMsg = "Please enter email or password";
+    } else if (this.email !== '' && this.this.password === '') {
+      this.errMsg = "Please enter email or password"
+    } else if (this.email === '' && this.password !== '') {
+      this.errMsg = 'please enter email or password'
+    }
+    return this.errMsg;
+  }
+  login() {
+    this.validate()
+    this.state.users.forEach(user => {
+      if(user.email === this.email && user.password === this.password){
+        return this.LoggedIn = true;
+      }
+    })
+  }
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||   HOME.JS  |||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+  // var lap = ``
+    // for (let i = 0; i < props.laptops.length; i++) {
+    //     lap += ' <div className="col-lg-3 p-2">
+    //         < div className = "nt" >
+
+    //         </div >
+    //     </div > '
+    // }
+
+{/* <div className="col-lg-2 p-1 mr-3 ml-2">
+                        <div className="cw">
+                        </div>
+                    </div>
+                    <div className="col-lg-2 p-1 mr-3">
+                        <div className="cw">
+                        </div>
+                    </div>
+                    <div className="col-lg-2 p-1 mr-3">
+                        <div className="cw">
+                        </div>
+                    </div>
+                    <div className="col-lg-2 p-1 mr-3">
+                        <div className="cw">
+                        </div>
+                    </div>
+                    <div className="col-lg-2 p-1">
+                        <div className="cw">
+                        </div>
+                    </div>
+                </div> 
+                     <div className="row">
+                    <div className="col-lg-2 p-1 ml-2 mr-3">
+                        <div className="cw">
+                        </div>
+                    </div>
+                    <div className="col-lg-2 p-1 mr-3">
+                        <div className="cw">
+                        </div>
+                    </div>
+                    <div className="col-lg-2 p-1 mr-3">
+                        <div className="cw">
+                        </div>
+                    </div>
+                    <div className="col-lg-2 p-1 mr-3">
+                        <div className="cw">
+                        </div>
+                    </div>
+                    <div className="col-lg-2 p-1">
+                        <div className="cw">
+                        </div>
+                    </div>*/}
+
+
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||  SHOP.JS           ||||||||||||||||||||||||||
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+    {/* <li>Men's Fashion</li>
+                                <li>Women's Fashion</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li>
+                                <li>Home Supplies</li> */}
+
+                {/* <div className="col-lg-3">
+
+                                </div>
+                                <div className="col-lg-3">
+
+                                </div>
+                                <div className="col-lg-3">
+
+                                </div>
+                                <div className="col-lg-3">
+
+                            </div> */}
+
+
+    // const  showDetails =(e)=>{
+    //     let id = parseInt(e.target.getAttribute('data-attr'))
+    //     let item = props.products.find(x => x.id === id)
+    //    console.log(item)
+    //  }
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+""""""""""""""""""""""""""""""""""""PRODUCT.JS""""""""""""""""""""""""""""""
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+// function ProductItem(props){
+//     /const {id} = useParams();
+//     const details = props.products.find(product => {
+//         return product._id === id
+//     })
+
+//     console.log(details)
+//     return(
+//         <div>
+//             Details {id} 
+//         </div>
+//     )
+// }
+
+// //import {useParams} from 'react-router-dom'
+// const ProductItem = ({ product, data }) => {
+//     const {id} = useParams();
+//     console.log({id})
+//     var item = data.products.find(p => p.id === product.params.productId);
+//     var productData;
+  
+//     if (item)
+//       productData = (
+//         <div>
+//           <h3> {item.name} </h3>
+//           <p>{item.price}</p>
+//           <hr />
+//           <h4>{item.category}</h4>{" "}
+//         </div>
+//       );
+//     else productData = <h2> Sorry. Product doesn't exist </h2>;
+  
+//     return (
+//       <div>
+//         <div>{productData}</div>
+//       </div>
+//     );
+//   };
+
+
+console.log(props.match.params.id)
+    const productId = props.match.params.id;
+    console.log(productId)
+    const product = props.products.find(e => e._id === productId);
+    console.log(product)
+    return( 
+        <div> Product</div>
+    )
